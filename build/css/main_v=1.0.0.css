@@ -1,0 +1,314 @@
+{"version":3,"file":"../main.css","sources":["main.scss","partials/_colors.scss","partials/_variables.scss","partials/_mixin.scss","partials/_general.scss","partials/_font.scss","partials/_walkthrough.scss","partials/_wave.scss"],"sourcesContent":["/*\n    __                     __  __  _                                   __  __                                  \n   / /   __  ___  ______  / /_/ /_(_)________ _   _      _____  ____ _/ /_/ /_  ___  _________ ___  ____ _____ \n  / /   / / / / |/_/ __ \\/ __/ __/ / ___/ __ `/  | | /| / / _ \\/ __ `/ __/ __ \\/ _ \\/ ___/ __ `__ \\/ __ `/ __ \\\n / /___/ /_/ />  </ /_/ / /_/ /_/ / /__/ /_/ /   | |/ |/ /  __/ /_/ / /_/ / / /  __/ /  / / / / / / /_/ / /_/ /\n/_____/\\__,_/_/|_|\\____/\\__/\\__/_/\\___/\\__,_/    |__/|__/\\___/\\__,_/\\__/_/ /_/\\___/_/  /_/ /_/ /_/\\__,_/ .___/ \n                                                                                                      /_/        \n*/\n\n//== Core variables and mixins\n@import \"./partials/colors\";\n@import \"./partials/variables\";\n@import \"./partials/mixin\";\n\n//== Core CSS\n@import \"./partials/general\";\n@import \"./partials/font\";\n\n//== Elements\n@import \"./partials/walkthrough\";\n@import \"./partials/wave\";","$grey : #707070;\n$light-grey :   #f2f2f2;\n$mid-grey:\t\t#aaa;\n$black:         #000;\n$white:         #fff;\n$light-black: rgba(0, 0, 0, 0.8);\n$dark-coffee:\t#231f1f;\n$blue:          #5397d0;\n$oil:           #325863;\n$link:         $grey;\n$link-active: $blue;\n$blue-sticky-menu:  rgba(34, 51, 66, 0.90);\n$black-sticky-menu: rgba(0, 0, 0, 0.70);\n$machine-cream: #AFABA0;\n$machine-brown: #68544F;\n$machine-black: #141414;\n$sepia: #A75F41;\n$green: #768355;\n$green-dark: #4d5737;\n$green-light: #dde5be;\n$blackcurrant: #3A2D3E;\n$red: #A75F41;","//== TYPO\n$font-size-base:          16px !default;\n$font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px\n$font-size-bigger:        ceil(($font-size-base * 1.3125)) !default; // ~21px\n$font-size-small:         ceil(($font-size-base * 0.8125)) !default; // ~13px\n\n$font-light: 300 !default;\n$font-regular: 400 !default;\n$font-semibold: 600 !default;\n$font-bold: 700 !default;\n\n$font-base-color: $white;\n\n//** Unit-less `line-height` for use in components like buttons.\n$line-height-base:        1.428571429 !default; // 20/14\n//** Computed \"line-height\" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.\n$line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px\n\n//** line-height % \n$line-height-100: 100%;\n$line-height-120: 120%;\n$line-height-150: 150%;\n\n//== Responsive containers\n$full-width-without-scollbar : calc(100vw - 100%);\n$responsive-base-height-16_8 : 49.2679vw;\n$responsive-base-height-16_5 : 33.3821vw;\n\n//== Breakpoints for each query\n//$smartphone: 40em; //640px\n//$tablet-sm: 768px;\n//$tablet: 52em;\n//$desktop: 64em;\n\n$screen-xsmall : 576px;\n$screen-small: 768px;\n$screen-medium: 992px;\n$screen-large: 1200px;\n$screen-xlarge: 1600px;\n\n$bezier: cubic-bezier(.25,.8,.25,1);","//== Responsive Font\n@mixin responsive-font($responsive, $min, $max: false, $fallback: false) {\n    $responsive-unitless: $responsive / ($responsive - $responsive + 1);\n    $dimension: if(unit($responsive) == 'vh', 'height', 'width');\n    $min-breakpoint: $min / $responsive-unitless * 100;\n  \n    @media (max-#{$dimension}: #{$min-breakpoint}) {\n      font-size: $min;\n      line-height: $min;\n    }\n  \n    @if $max {\n      $max-breakpoint: $max / $responsive-unitless * 100;\n  \n      @media (min-#{$dimension}: #{$max-breakpoint}) {\n        font-size: $max;\n        line-height: $max;\n      }\n    }\n  \n    @if $fallback {\n      font-size: $fallback;\n      line-height: $fallback;\n    }\n  \n    font-size: $responsive;\n    line-height: $responsive;\n  }\n\n  //== Font size to rem\n  @function strip-unit($num) {\n    @return $num / ($num * 0 + 1);\n  }\n  @mixin font-size($sizeValue, $imp:null) {\n      font-size: strip-unit($sizeValue) + px$imp;\n      font-size: strip-unit($sizeValue/16) + rem$imp;\n  }\n  \n  //== Respond To\n  @mixin respondTo($media) {\n    @if $media == xsmall {\n      @media (min-width: $screen-xsmall) { @content; }\n    }\n    @else if $media == small {\n      @media (min-width: $screen-small) { @content; }\n    }\n    @if $media == medium {\n      @media (min-width: $screen-medium) { @content; }\n    }\n    @else if $media == large {\n      @media (min-width: $screen-large) { @content; }\n    }\n     @else if $media == xlarge {\n      @media (min-width: $screen-xlarge) { @content; }\n    }\n  }\n  \n  //== Enable Hardware Accelerated\n  @mixin transform() {\n    -webkit-transform: translate3d(0,0,0);\n    -moz-transform: translate3d(0,0,0);\n    -ms-transform: translate3d(0,0,0);\n    -o-transform: translate3d(0,0,0);\n    transform: translate3d(0,0,0);\n  }\n  \n  // Rotate\n  @mixin rotate ($deg) { \n    @include transform(rotate(#{$deg}deg));\n  }\n  \n  // Scale\n  @mixin scale($scale) {\n    @include transform(scale($scale));\n  }\n  \n  // Translate\n  @mixin translate ($x, $y) {\n    @include transform(translate($x, $y));\n  }\n  \n  // Skew\n  @mixin skew ($x, $y) {\n    @include transform(skew(#{$x}deg, #{$y}deg));\n  }\n  \n  // Transform Origin\n  @mixin transform-origin ($origin) {\n    -webkit-transform-origin: $origin;\n    -moz-transform-origin: $origin;\n    -ms-transform-origin: $origin;\n    transform-origin: $origin;\n  }\n  \n  @mixin absCenter(){\n    position: absolute;\n    top:50%;\n    left:50%;\n    @include transform(translateX(-50%) translateY(-50%) translateZ(0));\n  }\n\n  @mixin material-shadow() {\n    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);\n  }","body {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    width: 100vw;\n    height: 100vh;\n    overflow: hidden;\n}","/*\n====== Font Weight ======\nLight: 300\nRegular: 400\nBolb: 700\n*/\n\nbody, html {\n    font-family: 'Roboto', sans-serif;\n    color: $white;\n  }\n  \n  h1,h2,h3,h4,h5,h6{\n    font-weight: $font-light;\n    margin: 0;\n  }\n  h1{\n    font-weight: $font-regular;\n    font-size: 25.6px / $font-size-base + rem;\n    @include respondTo(medium){\n      font-size: 40px / $font-size-base + rem;\n    }\n  }\n  h2{\n    font-weight: $font-regular;\n    font-size: 22px / $font-size-base + rem;\n    @include respondTo(medium){\n      font-size: 30px / $font-size-base + rem;\n    }\n  }\n  h3{\n    font-weight: $font-regular;\n    font-size: 20px / $font-size-base + rem;\n    @include respondTo(medium){\n      font-size: 20px / $font-size-base + rem;\n    }\n  }\n  a{\n    text-decoration: none;\n    color: $link;\n  }\n  strong{\n    font-weight: $font-bold;\n    font-family: 'Barlow Condensed', sans-serif!important;\n  }\n  p{\n    font-weight: $font-regular;\n    \n    @include font-size($font-size-base);\n    margin: 0;\n  }\n  \n  //== Alignment\n  .text-center{\n    text-align: center;\n  }\n  .text-left{\n    text-align: left;\n  }\n  .text-right{\n    text-align: right;\n  }\n  \n  //== Colors\n  .text-grey{\n    color: $grey;\n  }\n  .text-black{\n    color: $black;\n  }\n  .text-white{\n    color: white;\n  }\n  .text-blue{\n    color: $blue;\n  }\n  .text-sepia{\n    color: $sepia;\n  }\n  .text-green{\n    color: $green;\n  }\n  .text-green-light{\n    color: $green-light;\n  }\n  .text-green-dark{\n    color: $green-dark;\n  }\n  \n  //== weigths\n  .weigth-regular{\n    font-weight: $font-regular;\n  }\n  .weight-light{\n    font-weight: $font-light;\n  }\n  .weight-bold{\n    font-weight: $font-bold;\n  }\n  .weight-semibold{\n    font-weight: $font-semibold;\n  }\n  \n  //== Case\n  .nocase{\n    text-transform: none!important;\n  }\n  ","// =================================================================================================\n// Walkthrough\n// =================================================================================================\n.walkthrough {\n  @include material-shadow();\n  background: linear-gradient(to right bottom, #c7aa85 , #279de1);\n  border-radius: 0;\n  display: flex;\n  flex-direction: column;\n  flex: 0 0 auto;\n  font-size: $font-size-base;\n  height: 100vh;\n  max-height: 950px;\n  overflow: hidden;\n  width: 100%;\n  max-width: $screen-small;\n  z-index: 1000;\n  position: relative;\n\n  .motion-info{\n    position: absolute;\n    top: 0;\n    left: 0;\n    p{\n      @include font-size(10px);\n    }\n  }\n\n  .walkthrough-body {\n    align-items: center;\n    display: flex;\n    flex: 1;\n    text-align: center;\n    position: relative;\n\n    .prev-screen,\n    .next-screen {\n      align-self: stretch;\n      background: none;\n      border: 0;\n      margin-top: 40px;\n      color: rgba(white, 0.25);\n      cursor: pointer;\n      flex: 0 0 auto;\n      font-size: 24px;\n      opacity: 1;\n      outline: none;\n      padding: 16px;\n      transform: scale(1);\n      transition: transform 0.4s $bezier, color 0.4s $bezier, opacity 0.4s $bezier;\n      z-index: 1000;\n\n      &:hover,\n      &:active {\n        color: white;\n        transform-origin: center;\n        transform: scale(1.25);\n      }\n\n      &:disabled {\n        opacity: 0;\n        cursor: not-allowed;\n      }\n    }\n\n    .prev-screen {\n      order: 1;\n    }\n\n    .next-screen {\n      order: 3;\n    }\n\n    .screens {\n      flex: 1;\n      align-self: stretch;\n      position: relative;\n      margin: 0 -16px;\n      padding: 0;\n      order: 2;\n\n      .screen {\n        position: absolute;\n        list-style-type: none;\n        width: 100%;\n        \n        .content{\n          padding-top: 50px;\n          padding-left: 5px;\n          padding-right: 5px;\n          .current-label{\n            color: $light-grey;\n          }\n          .current-temp{\n            @include font-size(100px);\n          }\n          .forecast{\n            display: flex;\n            flex-direction: row;\n            margin-top: 120px;\n            .daily{\n              width: calc(100%/7);\n              span{\n                @include font-size(12px);\n              }\n              img{\n                width: 80%;\n                display: block;\n                margin: 0 auto;\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n\n  .walkthrough-pagination {\n    align-items: center;\n    display: flex;\n    justify-content: center;\n    margin-top: 24px;\n\n    .dot {\n      background: rgba(black, 0.25);\n      border-radius: 8px;\n      height: 8px;\n      margin: 0 4px;\n      transform: scale(0.75);\n      transition: transform 0.4s $bezier, background 0.4s $bezier;\n      width: 8px;\n\n      &.active {\n        background: white;\n        transform: scale(1);\n        transition-delay: 0.4s;\n      }\n    }\n  }\n\n  //Animation styles\n\n  .screens {\n    margin: 0;\n\n    .screen {\n      opacity: 0;\n      position: absolute;\n      transform: translateX(-72px);\n      transition: all 0.4s $bezier;\n\n\n      &.active {\n        opacity: 1;\n        transform: translateX(0) scale(1);\n        transition-delay: 0.4s;\n\n        ~ .screen {\n          opacity: 0;\n          transform: translateX(72px);\n        }\n\n        .media {\n          .status-badge {\n            opacity: 1;\n            transform: scale(1.75);\n          }\n\n          &.logo {\n\n            .logo {\n              opacity: 0.8;\n              transform: translateY(0);\n              transition-delay: 0.6s;\n            }\n\n            .status-badge {\n              transition-delay: 1s;\n            }\n          }\n\n          &.books {\n            .icon {\n              opacity: 1;\n              transform: translateY(0);\n              transition-delay: 0.6s;\n              &:nth-child(2) {\n                transition-delay: 0.725s;\n              }\n              &:nth-child(3) {\n                transition-delay: 0.850s;\n              }\n            }\n            .status-badge {\n              transition-delay: 1.4s;\n            }\n          }\n\n          &.bars {\n            .icon {\n              opacity: 1;\n              transform: translate(0) scale(1);\n              transition-delay: 0.6s;\n              &:nth-child(2) {\n                transition-delay: 1.050s;\n              }\n              &:nth-child(3) {\n                transition-delay: 0.925s;\n              }\n              &:nth-child(4) {\n                transition-delay: 0.8s;\n              }\n            }\n          }\n          &.files {\n            .icon {\n              opacity: 1;\n              transform: translateY(0);\n              transition-delay: 0.9s;\n              &:nth-child(3) {\n                transition-delay: 0.8s;\n              }\n              &:nth-child(2) {\n                transition-delay: 0.7s;\n              }\n              &:nth-child(1) {\n                transition-delay: 0.6s;\n              }\n            }\n            .status-badge {\n              transition-delay: 1.6s;\n            }\n          }\n          &.comm {\n            .icon {\n              opacity: 1;\n              transform: scale(1);\n              transition-delay: 0.6s;\n              &:nth-child(2) {\n                transition-delay: 0.8s;\n              }\n            }\n            .status-badge {\n              transition-delay: 1.6s;\n            }\n          }\n        }\n      }\n    }\n  }\n}",".wave{\n    width: 100%;\n    position: absolute;\n    bottom: 0;\n    top: 68vh;\n    @include respondTo('small'){\n        top: 68vh;\n    }\n    margin-bottom: -5px;\n    vertical-align: middle; \n\toverflow: hidden;\n\n    svg{\n        position: absolute;\n        left:0;\n        top:0;\n        width:100%;\n        height: 100%;\n    }\n\n    path{\n        @include transform();\n        transition: all 250ms ease 100ms;\n    }\n}"],"names":[],"mappings":"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"}
+/*
+    __                     __  __  _                                   __  __                                  
+   / /   __  ___  ______  / /_/ /_(_)________ _   _      _____  ____ _/ /_/ /_  ___  _________ ___  ____ _____ 
+  / /   / / / / |/_/ __ \/ __/ __/ / ___/ __ `/  | | /| / / _ \/ __ `/ __/ __ \/ _ \/ ___/ __ `__ \/ __ `/ __ \
+ / /___/ /_/ />  </ /_/ / /_/ /_/ / /__/ /_/ /   | |/ |/ /  __/ /_/ / /_/ / / /  __/ /  / / / / / / /_/ / /_/ /
+/_____/\__,_/_/|_|\____/\__/\__/_/\___/\__,_/    |__/|__/\___/\__,_/\__/_/ /_/\___/_/  /_/ /_/ /_/\__,_/ .___/ 
+                                                                                                      /_/        
+*/
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; }
+
+/*
+====== Font Weight ======
+Light: 300
+Regular: 400
+Bolb: 700
+*/
+body, html {
+  font-family: 'Roboto', sans-serif;
+  color: #fff; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  margin: 0; }
+
+h1 {
+  font-weight: 400;
+  font-size: 1.6rem; }
+  @media (min-width: 992px) {
+    h1 {
+      font-size: 2.5rem; } }
+
+h2 {
+  font-weight: 400;
+  font-size: 1.375rem; }
+  @media (min-width: 992px) {
+    h2 {
+      font-size: 1.875rem; } }
+
+h3 {
+  font-weight: 400;
+  font-size: 1.25rem; }
+  @media (min-width: 992px) {
+    h3 {
+      font-size: 1.25rem; } }
+
+a {
+  text-decoration: none;
+  color: #707070; }
+
+strong {
+  font-weight: 700;
+  font-family: "Barlow Condensed", sans-serif !important; }
+
+p {
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  margin: 0; }
+
+.text-center {
+  text-align: center; }
+
+.text-left {
+  text-align: left; }
+
+.text-right {
+  text-align: right; }
+
+.text-grey {
+  color: #707070; }
+
+.text-black {
+  color: #000; }
+
+.text-white {
+  color: white; }
+
+.text-blue {
+  color: #5397d0; }
+
+.text-sepia {
+  color: #A75F41; }
+
+.text-green {
+  color: #768355; }
+
+.text-green-light {
+  color: #dde5be; }
+
+.text-green-dark {
+  color: #4d5737; }
+
+.weigth-regular {
+  font-weight: 400; }
+
+.weight-light {
+  font-weight: 300; }
+
+.weight-bold {
+  font-weight: 700; }
+
+.weight-semibold {
+  font-weight: 600; }
+
+.nocase {
+  text-transform: none !important; }
+
+.walkthrough {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+  background: linear-gradient(to right bottom, #c7aa85, #279de1);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  font-size: 16px;
+  height: 100vh;
+  max-height: 950px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 768px;
+  z-index: 1000;
+  position: relative; }
+  .walkthrough .motion-info {
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .walkthrough .motion-info p {
+      font-size: 10px;
+      font-size: 0.625rem; }
+  .walkthrough .walkthrough-body {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    text-align: center;
+    position: relative; }
+    .walkthrough .walkthrough-body .prev-screen,
+    .walkthrough .walkthrough-body .next-screen {
+      align-self: stretch;
+      background: none;
+      border: 0;
+      margin-top: 40px;
+      color: rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+      flex: 0 0 auto;
+      font-size: 24px;
+      opacity: 1;
+      outline: none;
+      padding: 16px;
+      transform: scale(1);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      z-index: 1000; }
+      .walkthrough .walkthrough-body .prev-screen:hover, .walkthrough .walkthrough-body .prev-screen:active,
+      .walkthrough .walkthrough-body .next-screen:hover,
+      .walkthrough .walkthrough-body .next-screen:active {
+        color: white;
+        transform-origin: center;
+        transform: scale(1.25); }
+      .walkthrough .walkthrough-body .prev-screen:disabled,
+      .walkthrough .walkthrough-body .next-screen:disabled {
+        opacity: 0;
+        cursor: not-allowed; }
+    .walkthrough .walkthrough-body .prev-screen {
+      order: 1; }
+    .walkthrough .walkthrough-body .next-screen {
+      order: 3; }
+    .walkthrough .walkthrough-body .screens {
+      flex: 1;
+      align-self: stretch;
+      position: relative;
+      margin: 0 -16px;
+      padding: 0;
+      order: 2; }
+      .walkthrough .walkthrough-body .screens .screen {
+        position: absolute;
+        list-style-type: none;
+        width: 100%; }
+        .walkthrough .walkthrough-body .screens .screen .content {
+          padding-top: 50px;
+          padding-left: 5px;
+          padding-right: 5px; }
+          .walkthrough .walkthrough-body .screens .screen .content .current-label {
+            color: #f2f2f2; }
+          .walkthrough .walkthrough-body .screens .screen .content .current-temp {
+            font-size: 100px;
+            font-size: 6.25rem; }
+          .walkthrough .walkthrough-body .screens .screen .content .forecast {
+            display: flex;
+            flex-direction: row;
+            margin-top: 120px; }
+            .walkthrough .walkthrough-body .screens .screen .content .forecast .daily {
+              width: calc(100%/7); }
+              .walkthrough .walkthrough-body .screens .screen .content .forecast .daily span {
+                font-size: 12px;
+                font-size: 0.75rem; }
+              .walkthrough .walkthrough-body .screens .screen .content .forecast .daily img {
+                width: 80%;
+                display: block;
+                margin: 0 auto; }
+  .walkthrough .walkthrough-pagination {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 24px; }
+    .walkthrough .walkthrough-pagination .dot {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      height: 8px;
+      margin: 0 4px;
+      transform: scale(0.75);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      width: 8px; }
+      .walkthrough .walkthrough-pagination .dot.active {
+        background: white;
+        transform: scale(1);
+        transition-delay: 0.4s; }
+  .walkthrough .screens {
+    margin: 0; }
+    .walkthrough .screens .screen {
+      opacity: 0;
+      position: absolute;
+      transform: translateX(-72px);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+      .walkthrough .screens .screen.active {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        transition-delay: 0.4s; }
+        .walkthrough .screens .screen.active ~ .screen {
+          opacity: 0;
+          transform: translateX(72px); }
+        .walkthrough .screens .screen.active .media .status-badge {
+          opacity: 1;
+          transform: scale(1.75); }
+        .walkthrough .screens .screen.active .media.logo .logo {
+          opacity: 0.8;
+          transform: translateY(0);
+          transition-delay: 0.6s; }
+        .walkthrough .screens .screen.active .media.logo .status-badge {
+          transition-delay: 1s; }
+        .walkthrough .screens .screen.active .media.books .icon {
+          opacity: 1;
+          transform: translateY(0);
+          transition-delay: 0.6s; }
+          .walkthrough .screens .screen.active .media.books .icon:nth-child(2) {
+            transition-delay: 0.725s; }
+          .walkthrough .screens .screen.active .media.books .icon:nth-child(3) {
+            transition-delay: 0.850s; }
+        .walkthrough .screens .screen.active .media.books .status-badge {
+          transition-delay: 1.4s; }
+        .walkthrough .screens .screen.active .media.bars .icon {
+          opacity: 1;
+          transform: translate(0) scale(1);
+          transition-delay: 0.6s; }
+          .walkthrough .screens .screen.active .media.bars .icon:nth-child(2) {
+            transition-delay: 1.050s; }
+          .walkthrough .screens .screen.active .media.bars .icon:nth-child(3) {
+            transition-delay: 0.925s; }
+          .walkthrough .screens .screen.active .media.bars .icon:nth-child(4) {
+            transition-delay: 0.8s; }
+        .walkthrough .screens .screen.active .media.files .icon {
+          opacity: 1;
+          transform: translateY(0);
+          transition-delay: 0.9s; }
+          .walkthrough .screens .screen.active .media.files .icon:nth-child(3) {
+            transition-delay: 0.8s; }
+          .walkthrough .screens .screen.active .media.files .icon:nth-child(2) {
+            transition-delay: 0.7s; }
+          .walkthrough .screens .screen.active .media.files .icon:nth-child(1) {
+            transition-delay: 0.6s; }
+        .walkthrough .screens .screen.active .media.files .status-badge {
+          transition-delay: 1.6s; }
+        .walkthrough .screens .screen.active .media.comm .icon {
+          opacity: 1;
+          transform: scale(1);
+          transition-delay: 0.6s; }
+          .walkthrough .screens .screen.active .media.comm .icon:nth-child(2) {
+            transition-delay: 0.8s; }
+        .walkthrough .screens .screen.active .media.comm .status-badge {
+          transition-delay: 1.6s; }
+
+.wave {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  top: 68vh;
+  margin-bottom: -5px;
+  vertical-align: middle;
+  overflow: hidden; }
+  @media (min-width: 768px) {
+    .wave {
+      top: 68vh; } }
+  .wave svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; }
+  .wave path {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    transition: all 250ms ease 100ms; }
+
+/*# sourceMappingURL=maps/main.css.map */
+
+/*# sourceMappingURL=main.css.map */

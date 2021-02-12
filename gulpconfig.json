@@ -1,0 +1,24 @@
+{
+    "input" : {
+      "base"  : ["dev/index.php", "dev/.htaccess"],
+      "styles"  : "dev/styles/*.css",
+      "sass"  : "dev/styles/scss/**/*.scss",
+      "scripts"  : "dev/scripts/main.js",
+      "scriptsPath" : "dev/scripts/**/*.js",
+      "views"  :   "dev/views/*.jade",
+      "viewsParts" : "dev/views/template-parts/**/*.jade",
+      "images" : "dev/images/**/*"
+    },
+    "output"  : {
+      "base"  : "build/",
+      "styles"  : "build/css/",
+      "scripts"  : "build/js/",
+      "views"  :   "build/",
+      "vendor": {
+        "styles": "build/css/vendor/",
+        "scripts": "build/js/vendor/"
+      },
+      "images" : "build/images/",
+      "assets" : "build"
+    }
+  }

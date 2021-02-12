@@ -1,0 +1,69 @@
+{
+  "name": "Luxottica-WeatherMap",
+  "version": "1.0.0",
+  "description": "Luxottica WeatherMap",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "assetsPath": {
+    "dev": "./",
+    "prod": "./"
+  },
+  "keywords": [
+    ""
+  ],
+  "browserslist": [
+    "last 2 version"
+  ],
+  "author": "Martino Perez",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babelify": "^7.2.0",
+    "basscss": "^8.0.2",
+    "browser-sync": "^2.26.14",
+    "exorcist": "^1.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.7.0",
+    "gulp-connect-php": "^1.0.2",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-debug": "^3.1.0",
+    "gulp-filter": "^5.1.0",
+    "gulp-if": "^2.0.2",
+    "gulp-image": "^6.2.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-livereload": "^4.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-pug": "^3.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "main-bower-files": "^2.13.1",
+    "merge-stream": "^1.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bower": "^1.8.6",
+    "browserify": "^16.2.3",
+    "gulp-clean": "^0.4.0",
+    "gulp-watchify": "^0.7.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^4.0.0"
+  },
+  "scripts": {
+    "prestart": "bower install",
+    "start": "npm install",
+    "dev": "gulp dev",
+    "prod": "gulp build"
+  }
+}

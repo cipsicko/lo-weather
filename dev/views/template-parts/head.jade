@@ -1,0 +1,24 @@
+doctype
+!= "<html>"
+head
+
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(charset="UTF-8")
+    meta( name="description", content="")
+    meta( name="keywords", content="")
+    meta( name="robots", content="index,follow")
+
+    title Weather
+
+    if isProduction
+        link( rel="stylesheet", href="#{assetBasePath}css/vendor/vendors_v=#{assetsVersion}.css", type="text/css", media="all")
+        link( rel="stylesheet", href="#{assetBasePath}css/main.min_v=#{assetsVersion}.css", type="text/css", media="all")
+    else
+        link( rel="stylesheet", href="#{assetBasePath}css/vendor/vendors_v=#{assetsVersion}.css", type="text/css", media="all")
+        link( rel="stylesheet", href="#{assetBasePath}css/main_v=#{assetsVersion}.css", type="text/css", media="all")
+
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet")
+    link(href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet")
+
+!= "<body>"

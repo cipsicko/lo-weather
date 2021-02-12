@@ -1,0 +1,130 @@
+<!DOCTYPE html><html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="robots" content="index,follow">
+  <title>Weather</title>
+  <link rel="stylesheet" href="./css/vendor/vendors_v=1.0.0.css" type="text/css" media="all">
+  <link rel="stylesheet" href="./css/main_v=1.0.0.css" type="text/css" media="all">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head><body>
+<div id="walkthrough" class="walkthrough">
+  <div class="motion-info">
+    <p>beta: <span id="beta"></span></p>
+    <p>gamma:<span id="gamma"> </span></p>
+    <p>alpha:<span id="alpha"></span></p>
+    <p>is absolute: <span id="is-absolute"></span></p>
+    <p>acceleration-x: <span id="acceleration-x"></span></p>
+    <p>acceleration-y: <span id="acceleration-y"></span></p>
+    <p>acceleration-z: <span id="acceleration-z"></span></p>
+    <p>acceleration-including-gravity-x: <span id="acceleration-including-gravity-x"></span></p>
+    <p>acceleration-including-gravity-y: <span id="acceleration-including-gravity-y"></span></p>
+    <p>acceleration-including-gravity-z: <span id="acceleration-including-gravity-z"></span></p>
+    <p>rotation-rate-beta: <span id="rotation-rate-beta"></span></p>
+    <p>rotation-rate-gamma: <span id="rotation-rate-gamma"></span></p>
+    <p>rotation-rate-alpha: <span id="rotation-rate-alpha"></span></p>
+    <p>info1:<span id="info1"></span></p>
+    <p id="info2"></p>
+    <p id="info3"></p>
+  </div>
+  <div class="walkthrough-pagination"><a class="dot active"></a><a class="dot"></a><a class="dot"></a><a class="dot"></a><a class="dot"></a></div>
+  <div class="walkthrough-body">
+    <div class="wave waveAnim">
+      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320">
+        <defs>
+          <linearGradient id="gradient">
+            <stop offset="5%" stop-color="#A75F41"></stop>
+            <stop offset="95%" stop-color="#32ded488"></stop>
+          </linearGradient>
+        </defs>
+        <path fill="url(#gradient)" fill-opacity="0.8" d=""></path>
+      </svg>
+    </div>
+    <ul class="screens animate">
+      <li data-city="London" class="screen active">
+        <div class="content">
+          <h3>London</h3>
+          <p class="current-label currentWeatherLabel">Sunny</p>
+          <p class="current-temp currentWeatherTemp">28°</p>
+          <p class="current-minmax currentWeatherMinMax">3°/11°</p>
+          <div class="forecast forecastList"></div>
+          <!--
+          .daily
+              span.daily__label SUN
+              img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+              span.daily__minmax 3°/11°
+          .daily
+              span.daily__label SUN
+              img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+              span.daily__minmax 3°/11°
+          .daily
+              span.daily__label SUN
+              img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+              span.daily__minmax 3°/11°
+          .daily
+              span.daily__label SUN
+              img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+              span.daily__minmax 3°/11°
+          .daily
+              span.daily__label SUN
+              img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+              span.daily__minmax 3°/11°
+          .daily
+              span.daily__label SUN
+              img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+              span.daily__minmax 3°/11°
+          .daily
+              span.daily__label SUN
+              img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+              span.daily__minmax 3°/11°
+          
+          -->
+        </div>
+      </li>
+      <li data-city="Milan" class="screen">
+        <div class="content">
+          <h3>Milan</h3>
+          <p class="current-label currentWeatherLabel">Sunny</p>
+          <p class="current-temp currentWeatherTemp">28°</p>
+          <p class="current-minmax currentWeatherMinMax">3°/11°</p>
+          <div class="forecast forecastList"></div>
+        </div>
+      </li>
+      <li data-city="Bangkok" class="screen">
+        <div class="content">
+          <h3>Bangkok</h3>
+          <p class="current-label currentWeatherLabel">Sunny</p>
+          <p class="current-temp currentWeatherTemp">28°</p>
+          <p class="current-minmax currentWeatherMinMax">3°/11°</p>
+          <div class="forecast forecastList"></div>
+        </div>
+      </li>
+      <li data-city="LosAngeles" class="screen">
+        <div class="content">
+          <h3>Los Angeles</h3>
+          <p class="current-label currentWeatherLabel">Sunny</p>
+          <p class="current-temp currentWeatherTemp">28°</p>
+          <p class="current-minmax currentWeatherMinMax">3°/11°</p>
+          <div class="forecast forecastList"></div>
+        </div>
+      </li>
+      <li data-city="Nairobi" class="screen">
+        <div class="content">
+          <h3>Nairobi</h3>
+          <p class="current-label currentWeatherLabel">Sunny</p>
+          <p class="current-temp currentWeatherTemp">28°</p>
+          <p class="current-minmax currentWeatherMinMax">3°/11°</p>
+          <div class="forecast forecastList"></div>
+        </div>
+      </li>
+    </ul>
+    <button class="prev-screen"><i class="icon-angle-left"></i></button>
+    <button class="next-screen"><i class="icon-angle-right"></i></button>
+  </div>
+</div>
+<script src="./js/vendor/vendors_v=1.0.0.js"></script>
+<script src="./js/main_v=1.0.0.js"></script></body>

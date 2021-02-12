@@ -1,0 +1,124 @@
+include template-parts/head
+
+#walkthrough.walkthrough
+
+    .motion-info
+        p beta: 
+            span#beta
+        p gamma:
+            span#gamma 
+        p alpha:
+            span#alpha
+        p is absolute: 
+            span#is-absolute
+        p acceleration-x: 
+            span#acceleration-x
+        p acceleration-y: 
+            span#acceleration-y
+        p acceleration-z: 
+            span#acceleration-z
+        p acceleration-including-gravity-x: 
+            span#acceleration-including-gravity-x
+        p acceleration-including-gravity-y: 
+            span#acceleration-including-gravity-y
+        p acceleration-including-gravity-z: 
+            span#acceleration-including-gravity-z
+        p rotation-rate-beta: 
+            span#rotation-rate-beta
+        p rotation-rate-gamma: 
+            span#rotation-rate-gamma
+        p rotation-rate-alpha: 
+            span#rotation-rate-alpha
+        p info1:
+            span#info1
+        p#info2
+        p#info3
+
+    .walkthrough-pagination
+        a.dot.active
+        a.dot
+        a.dot
+        a.dot
+        a.dot
+
+    .walkthrough-body
+        .wave.waveAnim
+            svg(xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320")
+                defs
+                    linearGradient(id="gradient")
+                        stop(offset="5%" stop-color="#A75F41")
+                        stop(offset="95%" stop-color="#32ded488")
+                path(fill="url(#gradient)" fill-opacity="0.8" d="")
+        ul.screens.animate
+            li.screen.active(data-city="London")
+                .content
+                    h3 London
+                    p.current-label.currentWeatherLabel Sunny
+                    p.current-temp.currentWeatherTemp 28°
+                    p.current-minmax.currentWeatherMinMax 3°/11°
+                    .forecast.forecastList
+                    //
+                        .daily
+                            span.daily__label SUN
+                            img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+                            span.daily__minmax 3°/11°
+                        .daily
+                            span.daily__label SUN
+                            img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+                            span.daily__minmax 3°/11°
+                        .daily
+                            span.daily__label SUN
+                            img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+                            span.daily__minmax 3°/11°
+                        .daily
+                            span.daily__label SUN
+                            img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+                            span.daily__minmax 3°/11°
+                        .daily
+                            span.daily__label SUN
+                            img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+                            span.daily__minmax 3°/11°
+                        .daily
+                            span.daily__label SUN
+                            img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+                            span.daily__minmax 3°/11°
+                        .daily
+                            span.daily__label SUN
+                            img.daily__icon(src="http://openweathermap.org/img/wn/10d@2x.png")
+                            span.daily__minmax 3°/11°
+                        
+            li.screen(data-city="Milan")
+                .content
+                    h3 Milan
+                    p.current-label.currentWeatherLabel Sunny
+                    p.current-temp.currentWeatherTemp 28°
+                    p.current-minmax.currentWeatherMinMax 3°/11°
+                    .forecast.forecastList
+            li.screen(data-city="Bangkok")
+                .content
+                    h3 Bangkok
+                    p.current-label.currentWeatherLabel Sunny
+                    p.current-temp.currentWeatherTemp 28°
+                    p.current-minmax.currentWeatherMinMax 3°/11°
+                    .forecast.forecastList
+            li.screen(data-city="LosAngeles")
+                .content
+                    h3 Los Angeles
+                    p.current-label.currentWeatherLabel Sunny
+                    p.current-temp.currentWeatherTemp 28°
+                    p.current-minmax.currentWeatherMinMax 3°/11°
+                    .forecast.forecastList
+            li.screen(data-city="Nairobi")
+                .content
+                    h3 Nairobi
+                    p.current-label.currentWeatherLabel Sunny
+                    p.current-temp.currentWeatherTemp 28°
+                    p.current-minmax.currentWeatherMinMax 3°/11°
+                    .forecast.forecastList
+
+        button.prev-screen
+            i.icon-angle-left
+        button.next-screen
+            i.icon-angle-right
+
+include template-parts/footer

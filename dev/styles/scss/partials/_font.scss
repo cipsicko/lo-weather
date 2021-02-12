@@ -1,0 +1,108 @@
+/*
+====== Font Weight ======
+Light: 300
+Regular: 400
+Bolb: 700
+*/
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    color: $white;
+  }
+  
+  h1,h2,h3,h4,h5,h6{
+    font-weight: $font-light;
+    margin: 0;
+  }
+  h1{
+    font-weight: $font-regular;
+    font-size: 25.6px / $font-size-base + rem;
+    @include respondTo(medium){
+      font-size: 40px / $font-size-base + rem;
+    }
+  }
+  h2{
+    font-weight: $font-regular;
+    font-size: 22px / $font-size-base + rem;
+    @include respondTo(medium){
+      font-size: 30px / $font-size-base + rem;
+    }
+  }
+  h3{
+    font-weight: $font-regular;
+    font-size: 20px / $font-size-base + rem;
+    @include respondTo(medium){
+      font-size: 20px / $font-size-base + rem;
+    }
+  }
+  a{
+    text-decoration: none;
+    color: $link;
+  }
+  strong{
+    font-weight: $font-bold;
+    font-family: 'Barlow Condensed', sans-serif!important;
+  }
+  p{
+    font-weight: $font-regular;
+    
+    @include font-size($font-size-base);
+    margin: 0;
+  }
+  
+  //== Alignment
+  .text-center{
+    text-align: center;
+  }
+  .text-left{
+    text-align: left;
+  }
+  .text-right{
+    text-align: right;
+  }
+  
+  //== Colors
+  .text-grey{
+    color: $grey;
+  }
+  .text-black{
+    color: $black;
+  }
+  .text-white{
+    color: white;
+  }
+  .text-blue{
+    color: $blue;
+  }
+  .text-sepia{
+    color: $sepia;
+  }
+  .text-green{
+    color: $green;
+  }
+  .text-green-light{
+    color: $green-light;
+  }
+  .text-green-dark{
+    color: $green-dark;
+  }
+  
+  //== weigths
+  .weigth-regular{
+    font-weight: $font-regular;
+  }
+  .weight-light{
+    font-weight: $font-light;
+  }
+  .weight-bold{
+    font-weight: $font-bold;
+  }
+  .weight-semibold{
+    font-weight: $font-semibold;
+  }
+  
+  //== Case
+  .nocase{
+    text-transform: none!important;
+  }
+  

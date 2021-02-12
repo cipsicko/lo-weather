@@ -1,0 +1,24 @@
+{
+  "name": "Luxottica WeatherMap",
+  "description": "Luxottica WeatherMap",
+  "main": "index.html",
+  "authors": [
+    "Martino Perez"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "website"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "normalize-css": "^8.0.0",
+    "gyronorm": "^2.0.6"
+  }
+}

@@ -1,0 +1,6 @@
+[
+    "bower_components/normalize-css/normalize.css",
+    "node_modules/basscss/css/basscss.min.css",
+    "node_modules/axios/dist/axios.min.js",
+    "bower_components/gyronorm/dist/gyronorm.complete.min.js"
+  ]

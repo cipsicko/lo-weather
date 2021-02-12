@@ -1,0 +1,104 @@
+//== Responsive Font
+@mixin responsive-font($responsive, $min, $max: false, $fallback: false) {
+    $responsive-unitless: $responsive / ($responsive - $responsive + 1);
+    $dimension: if(unit($responsive) == 'vh', 'height', 'width');
+    $min-breakpoint: $min / $responsive-unitless * 100;
+  
+    @media (max-#{$dimension}: #{$min-breakpoint}) {
+      font-size: $min;
+      line-height: $min;
+    }
+  
+    @if $max {
+      $max-breakpoint: $max / $responsive-unitless * 100;
+  
+      @media (min-#{$dimension}: #{$max-breakpoint}) {
+        font-size: $max;
+        line-height: $max;
+      }
+    }
+  
+    @if $fallback {
+      font-size: $fallback;
+      line-height: $fallback;
+    }
+  
+    font-size: $responsive;
+    line-height: $responsive;
+  }
+
+  //== Font size to rem
+  @function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+  }
+  @mixin font-size($sizeValue, $imp:null) {
+      font-size: strip-unit($sizeValue) + px$imp;
+      font-size: strip-unit($sizeValue/16) + rem$imp;
+  }
+  
+  //== Respond To
+  @mixin respondTo($media) {
+    @if $media == xsmall {
+      @media (min-width: $screen-xsmall) { @content; }
+    }
+    @else if $media == small {
+      @media (min-width: $screen-small) { @content; }
+    }
+    @if $media == medium {
+      @media (min-width: $screen-medium) { @content; }
+    }
+    @else if $media == large {
+      @media (min-width: $screen-large) { @content; }
+    }
+     @else if $media == xlarge {
+      @media (min-width: $screen-xlarge) { @content; }
+    }
+  }
+  
+  //== Enable Hardware Accelerated
+  @mixin transform() {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+  
+  // Rotate
+  @mixin rotate ($deg) { 
+    @include transform(rotate(#{$deg}deg));
+  }
+  
+  // Scale
+  @mixin scale($scale) {
+    @include transform(scale($scale));
+  }
+  
+  // Translate
+  @mixin translate ($x, $y) {
+    @include transform(translate($x, $y));
+  }
+  
+  // Skew
+  @mixin skew ($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+  }
+  
+  // Transform Origin
+  @mixin transform-origin ($origin) {
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    transform-origin: $origin;
+  }
+  
+  @mixin absCenter(){
+    position: absolute;
+    top:50%;
+    left:50%;
+    @include transform(translateX(-50%) translateY(-50%) translateZ(0));
+  }
+
+  @mixin material-shadow() {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+  }
